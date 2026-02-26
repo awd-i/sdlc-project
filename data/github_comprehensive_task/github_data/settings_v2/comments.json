@@ -1,0 +1,21 @@
+{
+  "1": [
+    {
+      "body": "Reproduced. The issue is in `validate_key()` - it splits on '.' unconditionally.",
+      "user": {"login": "charlie-qa"},
+      "created_at": "2026-02-04T10:00:00Z"
+    },
+    {
+      "body": "Quick fix: add a `flat_keys=True` option to the validator. But we should also consider supporting real nested configs in v3.",
+      "user": {"login": "alice-dev"},
+      "created_at": "2026-02-06T11:00:00Z"
+    }
+  ],
+  "3": [
+    {
+      "body": "Same pattern in the DELETE endpoint - returns 200 instead of 204.",
+      "user": {"login": "bob-eng"},
+      "created_at": "2026-02-11T09:00:00Z"
+    }
+  ]
+}

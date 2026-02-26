@@ -1,0 +1,10 @@
+{
+  "4": [
+    {
+      "body": "Type hints look correct now. Verified with mypy --strict.",
+      "state": "APPROVED",
+      "user": {"login": "alice-dev"},
+      "submitted_at": "2026-01-27T15:00:00Z"
+    }
+  ]
+}

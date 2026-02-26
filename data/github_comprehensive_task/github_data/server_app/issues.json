@@ -1,0 +1,62 @@
+[
+  {
+    "number": 1,
+    "title": "Login endpoint returns 500 on empty password",
+    "body": "POST /api/login with `{\"username\": \"admin\", \"password\": \"\"}` crashes instead of returning 400.\n\nTraceback points to `auth.py:45` — `bcrypt.checkpw` receives empty bytes.",
+    "state": "open",
+    "labels": [{"name": "bug"}, {"name": "priority-high"}],
+    "assignees": [{"login": "agent-bot"}],
+    "user": {"login": "dana-sec"},
+    "created_at": "2026-02-01T09:00:00Z",
+    "updated_at": "2026-02-05T11:00:00Z",
+    "comments": 3
+  },
+  {
+    "number": 2,
+    "title": "Add pagination to /api/users endpoint",
+    "body": "Currently returns all users in a single response. Need `?page=1&per_page=20` support.",
+    "state": "open",
+    "labels": [{"name": "enhancement"}],
+    "assignees": [],
+    "user": {"login": "bob-eng"},
+    "created_at": "2026-02-03T14:00:00Z",
+    "updated_at": "2026-02-03T14:00:00Z",
+    "comments": 0
+  },
+  {
+    "number": 3,
+    "title": "CORS headers missing on preflight requests",
+    "body": "Browser requests fail with CORS errors. The OPTIONS handler doesn't set Access-Control-Allow-Origin.",
+    "state": "closed",
+    "labels": [{"name": "bug"}, {"name": "security"}],
+    "assignees": [{"login": "alice-dev"}],
+    "user": {"login": "charlie-qa"},
+    "created_at": "2026-01-20T10:00:00Z",
+    "updated_at": "2026-01-25T16:00:00Z",
+    "comments": 5
+  },
+  {
+    "number": 4,
+    "title": "Migrate database from SQLite to PostgreSQL",
+    "body": "SQLite doesn't support concurrent writes. We need to switch to PostgreSQL for production.",
+    "state": "open",
+    "labels": [{"name": "enhancement"}, {"name": "breaking-change"}],
+    "assignees": [],
+    "user": {"login": "alice-dev"},
+    "created_at": "2026-02-10T08:30:00Z",
+    "updated_at": "2026-02-10T08:30:00Z",
+    "comments": 1
+  },
+  {
+    "number": 5,
+    "title": "Write integration tests for auth endpoints",
+    "body": "No test coverage for `/api/login`, `/api/logout`, `/api/register`. Need pytest fixtures + test cases.",
+    "state": "open",
+    "labels": [{"name": "testing"}, {"name": "good-first-issue"}],
+    "assignees": [],
+    "user": {"login": "bob-eng"},
+    "created_at": "2026-02-12T12:00:00Z",
+    "updated_at": "2026-02-12T12:00:00Z",
+    "comments": 0
+  }
+]

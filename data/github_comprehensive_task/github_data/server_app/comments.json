@@ -1,0 +1,45 @@
+{
+  "1": [
+    {
+      "body": "Can reproduce. This also happens with a null password field, not just empty string.",
+      "user": {"login": "charlie-qa"},
+      "created_at": "2026-02-02T10:00:00Z"
+    },
+    {
+      "body": "Assigned to @agent-bot — please fix before the v2.1 release.",
+      "user": {"login": "alice-dev"},
+      "created_at": "2026-02-03T08:00:00Z"
+    },
+    {
+      "body": "Workaround: validate input before calling bcrypt. Add `if not password: return 400`.",
+      "user": {"login": "dana-sec"},
+      "created_at": "2026-02-05T11:00:00Z"
+    }
+  ],
+  "3": [
+    {
+      "body": "This blocks the React frontend from making any API calls.",
+      "user": {"login": "bob-eng"},
+      "created_at": "2026-01-21T09:00:00Z"
+    },
+    {
+      "body": "Fixed in PR #6.",
+      "user": {"login": "alice-dev"},
+      "created_at": "2026-01-25T15:35:00Z"
+    }
+  ],
+  "4": [
+    {
+      "body": "We should use SQLAlchemy with async support if we switch to Postgres.",
+      "user": {"login": "bob-eng"},
+      "created_at": "2026-02-11T09:00:00Z"
+    }
+  ],
+  "7": [
+    {
+      "body": "Looking good so far. Please add the X-Total-Count header too.",
+      "user": {"login": "alice-dev"},
+      "created_at": "2026-02-09T11:00:00Z"
+    }
+  ]
+}

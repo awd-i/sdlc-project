@@ -1,0 +1,67 @@
+[
+  {
+    "number": 1,
+    "title": "API responses are malformed — not valid JSON",
+    "body": "When hitting any endpoint, the response body looks like a Python dict repr (single quotes, True/False instead of true/false) instead of proper JSON.\n\nSteps to reproduce:\n1. Start the server\n2. `curl http://localhost:8000/`\n3. Observe response has single quotes\n\nExpected: Valid JSON\nActual: Python dict string representation",
+    "state": "open",
+    "labels": [{"name": "bug"}, {"name": "priority-high"}],
+    "assignees": [{"login": "agent-bot"}],
+    "user": {"login": "alice-dev"},
+    "created_at": "2026-02-10T10:00:00Z",
+    "updated_at": "2026-02-15T14:30:00Z",
+    "comments": 2,
+    "html_url": "https://github.com/acme-corp/server-app/issues/1"
+  },
+  {
+    "number": 2,
+    "title": "Add health check endpoint",
+    "body": "We need a `/health` endpoint that returns `{\"status\": \"ok\"}` for load balancer health checks.\n\nAcceptance criteria:\n- GET /health returns 200\n- Response body is `{\"status\": \"ok\"}`",
+    "state": "open",
+    "labels": [{"name": "enhancement"}, {"name": "good-first-issue"}],
+    "assignees": [],
+    "user": {"login": "bob-eng"},
+    "created_at": "2026-02-12T09:15:00Z",
+    "updated_at": "2026-02-12T09:15:00Z",
+    "comments": 0,
+    "html_url": "https://github.com/acme-corp/server-app/issues/2"
+  },
+  {
+    "number": 3,
+    "title": "Server crashes when POST body is empty",
+    "body": "Sending a POST to `/api/echo` with no body causes an unhandled exception.\n\n```\nTraceback:\n  File \"server.py\", line 95, in do_POST\n    content_length = int(self.headers['Content-Length'])\nTypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'\n```",
+    "state": "closed",
+    "labels": [{"name": "bug"}],
+    "assignees": [{"login": "alice-dev"}],
+    "user": {"login": "charlie-qa"},
+    "created_at": "2026-02-08T16:00:00Z",
+    "updated_at": "2026-02-09T11:00:00Z",
+    "comments": 3,
+    "html_url": "https://github.com/acme-corp/server-app/issues/3"
+  },
+  {
+    "number": 4,
+    "title": "Add rate limiting to API endpoints",
+    "body": "To prevent abuse, we should add basic rate limiting. Start with 100 requests per minute per IP.",
+    "state": "open",
+    "labels": [{"name": "enhancement"}, {"name": "security"}],
+    "assignees": [],
+    "user": {"login": "alice-dev"},
+    "created_at": "2026-02-14T08:00:00Z",
+    "updated_at": "2026-02-14T08:00:00Z",
+    "comments": 1,
+    "html_url": "https://github.com/acme-corp/server-app/issues/4"
+  },
+  {
+    "number": 5,
+    "title": "Document API endpoints in README",
+    "body": "The repo has no README.md. We need documentation covering:\n- Available endpoints\n- Request/response format\n- How to run the server locally",
+    "state": "open",
+    "labels": [{"name": "documentation"}],
+    "assignees": [],
+    "user": {"login": "bob-eng"},
+    "created_at": "2026-02-16T12:00:00Z",
+    "updated_at": "2026-02-16T12:00:00Z",
+    "comments": 0,
+    "html_url": "https://github.com/acme-corp/server-app/issues/5"
+  }
+]

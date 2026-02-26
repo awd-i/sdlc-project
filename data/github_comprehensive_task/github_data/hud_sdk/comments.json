@@ -1,0 +1,21 @@
+{
+  "1": [
+    {
+      "body": "Reproduced. The issue is in `docker_client.wait()` - it doesn't pass a timeout kwarg to the Docker API.",
+      "user": {"login": "charlie-qa"},
+      "created_at": "2026-02-02T10:00:00Z"
+    },
+    {
+      "body": "Workaround: set `DOCKER_TIMEOUT=30` env var. But we should fix the SDK to handle this properly.",
+      "user": {"login": "alice-dev"},
+      "created_at": "2026-02-05T09:00:00Z"
+    }
+  ],
+  "3": [
+    {
+      "body": "Fixed in PR #4.",
+      "user": {"login": "charlie-qa"},
+      "created_at": "2026-01-28T12:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+[
+  {
+    "number": 4,
+    "title": "Fix Grade.from_subscores() type hints",
+    "body": "Updates return type to `Optional[Grade]` and adds a guard clause for empty input.\n\nCloses #3",
+    "state": "closed",
+    "head": {"ref": "fix/grade-type-hints", "sha": "ccc3333"},
+    "base": {"ref": "main"},
+    "merged": true,
+    "merged_at": "2026-01-28T11:30:00Z",
+    "user": {"login": "charlie-qa"},
+    "created_at": "2026-01-26T14:00:00Z",
+    "updated_at": "2026-01-28T11:30:00Z"
+  }
+]

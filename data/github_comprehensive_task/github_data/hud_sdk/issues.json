@@ -1,0 +1,38 @@
+[
+  {
+    "number": 1,
+    "title": "Environment.reset() hangs when Docker container is unreachable",
+    "body": "If the Docker daemon is down or the container exited, `env.reset()` blocks forever instead of raising a timeout error.\n\nExpected: `TimeoutError` after 30s.\nActual: hangs indefinitely.",
+    "state": "open",
+    "labels": [{"name": "bug"}, {"name": "priority-high"}],
+    "assignees": [{"login": "agent-bot"}],
+    "user": {"login": "alice-dev"},
+    "created_at": "2026-02-01T11:00:00Z",
+    "updated_at": "2026-02-05T09:00:00Z",
+    "comments": 2
+  },
+  {
+    "number": 2,
+    "title": "Support async iteration over evaluation results",
+    "body": "Currently `Evaluator.run()` returns a list. For large benchmarks (1000+ tasks), this consumes too much memory. Add `async for result in evaluator.run_iter()` support.",
+    "state": "open",
+    "labels": [{"name": "enhancement"}],
+    "assignees": [],
+    "user": {"login": "bob-eng"},
+    "created_at": "2026-02-08T14:00:00Z",
+    "updated_at": "2026-02-08T14:00:00Z",
+    "comments": 0
+  },
+  {
+    "number": 3,
+    "title": "Fix type hints for Grade.from_subscores()",
+    "body": "The return type annotation says `Grade` but it actually returns `Optional[Grade]` when the input list is empty. mypy reports errors.",
+    "state": "closed",
+    "labels": [{"name": "bug"}, {"name": "typing"}],
+    "assignees": [{"login": "charlie-qa"}],
+    "user": {"login": "dana-sec"},
+    "created_at": "2026-01-20T10:00:00Z",
+    "updated_at": "2026-01-28T12:00:00Z",
+    "comments": 1
+  }
+]

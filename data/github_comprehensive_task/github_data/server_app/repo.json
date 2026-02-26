@@ -1,0 +1,14 @@
+{
+  "id": 1001,
+  "name": "server-app",
+  "full_name": "acme-corp/server-app",
+  "description": "Python HTTP server — Flask backend with REST API",
+  "default_branch": "main",
+  "private": false,
+  "html_url": "https://github.com/acme-corp/server-app",
+  "language": "Python",
+  "topics": ["api", "flask", "python", "backend"],
+  "stargazers_count": 48,
+  "forks_count": 7,
+  "open_issues_count": 4
+}

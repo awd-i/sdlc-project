@@ -1,0 +1,9 @@
+[
+  {
+    "number": 1,
+    "title": "v1.0 Stable Release",
+    "description": "First stable release with complete evaluation API",
+    "state": "open",
+    "due_on": "2026-04-01T00:00:00Z"
+  }
+]

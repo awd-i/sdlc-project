@@ -1,0 +1,50 @@
+[
+  {
+    "number": 1,
+    "title": "Config validation rejects valid nested keys",
+    "body": "When a settings key contains dots (e.g. `app.database.host`), the validator treats it as a nested path and rejects it if the intermediate keys don't exist.\n\nExpected: flat keys with dots should be accepted as-is.\nActual: `ValidationError: missing key 'app'`.",
+    "state": "open",
+    "labels": [{"name": "bug"}, {"name": "priority-high"}],
+    "assignees": [{"login": "agent-bot"}],
+    "user": {"login": "alice-dev"},
+    "created_at": "2026-02-03T09:00:00Z",
+    "updated_at": "2026-02-06T11:00:00Z",
+    "comments": 2
+  },
+  {
+    "number": 2,
+    "title": "Add bulk import endpoint for settings migration",
+    "body": "Need a POST /api/settings/import endpoint that accepts a JSON blob of key-value pairs and upserts them all in a single transaction.",
+    "state": "open",
+    "labels": [{"name": "enhancement"}],
+    "assignees": [],
+    "user": {"login": "bob-eng"},
+    "created_at": "2026-02-07T14:00:00Z",
+    "updated_at": "2026-02-07T14:00:00Z",
+    "comments": 0
+  },
+  {
+    "number": 3,
+    "title": "PUT /api/settings/:key returns 200 on create instead of 201",
+    "body": "When creating a new setting via PUT, the response status is 200. It should be 201 for new resources per REST conventions.",
+    "state": "open",
+    "labels": [{"name": "bug"}],
+    "assignees": [],
+    "user": {"login": "charlie-qa"},
+    "created_at": "2026-02-10T08:00:00Z",
+    "updated_at": "2026-02-10T08:00:00Z",
+    "comments": 1
+  },
+  {
+    "number": 4,
+    "title": "Migrate settings store from file-based to SQLite",
+    "body": "The file-based JSON store doesn't handle concurrent writes. Switch to SQLite for atomicity.",
+    "state": "closed",
+    "labels": [{"name": "enhancement"}, {"name": "breaking-change"}],
+    "assignees": [{"login": "alice-dev"}],
+    "user": {"login": "alice-dev"},
+    "created_at": "2026-01-15T10:00:00Z",
+    "updated_at": "2026-01-25T14:00:00Z",
+    "comments": 3
+  }
+]

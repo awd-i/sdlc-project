@@ -1,0 +1,27 @@
+[
+  {
+    "number": 6,
+    "title": "Fix CORS preflight handling",
+    "body": "Adds proper OPTIONS handler with Access-Control-Allow-Origin, Methods, and Headers.\n\nCloses #3",
+    "state": "closed",
+    "head": {"ref": "fix/cors-headers", "sha": "abc1234"},
+    "base": {"ref": "main"},
+    "merged": true,
+    "merged_at": "2026-01-25T15:30:00Z",
+    "user": {"login": "alice-dev"},
+    "created_at": "2026-01-24T10:00:00Z",
+    "updated_at": "2026-01-25T15:30:00Z"
+  },
+  {
+    "number": 7,
+    "title": "WIP: Add user pagination",
+    "body": "Draft implementation of pagination for the users endpoint.\n\nRef #2\n\nStill needs:\n- [ ] Total count header\n- [ ] Link header for next/prev",
+    "state": "open",
+    "draft": true,
+    "head": {"ref": "feature/user-pagination", "sha": "def5678"},
+    "base": {"ref": "main"},
+    "user": {"login": "bob-eng"},
+    "created_at": "2026-02-08T16:00:00Z",
+    "updated_at": "2026-02-10T09:00:00Z"
+  }
+]

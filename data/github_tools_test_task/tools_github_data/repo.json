@@ -1,0 +1,14 @@
+{
+  "id": 1,
+  "name": "server-app",
+  "full_name": "acme-corp/server-app",
+  "description": "A simple HTTP API server with JSON endpoints",
+  "default_branch": "server_fix_baseline",
+  "private": true,
+  "html_url": "https://github.com/acme-corp/server-app",
+  "language": "Python",
+  "topics": ["api", "python", "http-server"],
+  "stargazers_count": 12,
+  "forks_count": 3,
+  "open_issues_count": 4
+}

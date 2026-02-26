@@ -1,0 +1,14 @@
+{
+  "id": 1003,
+  "name": "hud-sdk",
+  "full_name": "acme-corp/hud-sdk",
+  "description": "HUD Python SDK for AI agent evaluation",
+  "default_branch": "main",
+  "private": false,
+  "html_url": "https://github.com/acme-corp/hud-sdk",
+  "language": "Python",
+  "topics": ["sdk", "python", "ai", "evaluation"],
+  "stargazers_count": 230,
+  "forks_count": 34,
+  "open_issues_count": 2
+}

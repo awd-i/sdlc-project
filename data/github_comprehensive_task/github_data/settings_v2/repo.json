@@ -1,0 +1,14 @@
+{
+  "id": 1002,
+  "name": "settings-api",
+  "full_name": "acme-corp/settings-api",
+  "description": "Settings management API v2",
+  "default_branch": "main",
+  "private": false,
+  "html_url": "https://github.com/acme-corp/settings-api",
+  "language": "Python",
+  "topics": ["api", "settings", "python"],
+  "stargazers_count": 32,
+  "forks_count": 5,
+  "open_issues_count": 3
+}
