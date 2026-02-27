@@ -221,3 +221,29 @@ def validate():
         tasks = list(all_tasks.values())
 
     _validate(tasks, url=url, project_dir=Path(__file__).parent, restart_between_tasks=False)
+
+
+def init():
+    """Bootstrap: set up git auth, run uv lock + uv sync, then tear down auth.
+
+    Callable without a lockfile via: python3 sdlc_scripts.py init
+    """
+    pat = _setup_git_auth()
+    try:
+        result = subprocess.call(["uv", "lock"])
+        if result == 0:
+            result = subprocess.call(["uv", "sync"])
+    finally:
+        if pat:
+            _teardown_git_auth(pat)
+    raise SystemExit(result)
+
+
+if __name__ == "__main__":
+    commands = {"init": init}
+    cmd = sys.argv[1] if len(sys.argv) > 1 else None
+    if cmd not in commands:
+        print(f"Usage: python3 {Path(__file__).name} <{'|'.join(commands)}>")
+        raise SystemExit(1)
+    sys.argv = sys.argv[1:]  # shift so the subcommand sees its own args
+    commands[cmd]()
