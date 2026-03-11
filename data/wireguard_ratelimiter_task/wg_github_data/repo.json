@@ -1,0 +1,11 @@
+{
+  "id": 101,
+  "name": "wireguard-go",
+  "full_name": "acme-corp/wireguard-go",
+  "description": "Go implementation of WireGuard VPN protocol",
+  "default_branch": "ratelimiter_bug_baseline",
+  "private": true,
+  "html_url": "https://github.com/acme-corp/wireguard-go",
+  "language": "Go",
+  "topics": ["vpn", "wireguard", "networking", "go", "security"]
+}

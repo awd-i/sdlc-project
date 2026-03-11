@@ -32,3 +32,9 @@ repos:
       - eval_reward_baseline
       - eval_reward_test
       - eval_reward_golden
+  wireguard-go:
+    repo_url: https://github.com/awd-i/wireguard-go
+    branches:
+      - ratelimiter_bug_baseline
+      - ratelimiter_bug_test
+      - ratelimiter_bug_golden

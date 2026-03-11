@@ -1,0 +1,38 @@
+[
+  {
+    "number": 78,
+    "id": 7801,
+    "title": "Rate limiter allows 6 initial handshake packets instead of 5",
+    "state": "open",
+    "user": {"login": "sre-mchen", "id": 80001, "type": "User"},
+    "labels": [{"id": 4001, "name": "bug", "color": "d73a4a"}, {"id": 4003, "name": "security", "color": "e4e669"}],
+    "body": "## Observed behavior\n\nOur packet-capture analysis on the production VPN gateway shows that when a new source IP starts a handshake flood, the rate limiter lets through **6** initiation packets in the first burst window before clamping down. According to the constants in `ratelimiter.go`, `packetsBurstable = 5`, so the cap should be 5.\n\n## Impact\n\nEach extra handshake-initiation packet triggers an expensive Curve25519 DH operation. Under a distributed handshake flood from thousands of spoofed source IPs, the extra allowed packet per IP compounds to roughly 20% more CPU load than what the rate limiter was designed to absorb.\n\n## Steps to reproduce\n\n1. Send rapid handshake-initiation packets from a single source IP\n2. Count how many are accepted before the limiter kicks in\n3. Expected: 5 (`packetsBurstable`)\n4. Actual: 6\n\n## Suspected area\n\nThe token-bucket initialization in `ratelimiter/ratelimiter.go`, specifically the `Allow()` function where a new `RatelimiterEntry` is created.",
+    "created_at": "2026-03-01T09:15:00Z",
+    "updated_at": "2026-03-02T14:30:00Z",
+    "html_url": "https://github.com/acme-corp/wireguard-go/issues/78",
+    "comments": 1,
+    "comments_data": [
+      {
+        "id": 78001,
+        "user": {"login": "network-jli", "id": 80002, "type": "User"},
+        "body": "I can reproduce this in the unit tests. If you add a counter to `TestRatelimiter` and print how many `Allow()` calls return true before the first false, you get 6 instead of 5. Looks like the initial token allocation is off.",
+        "created_at": "2026-03-01T11:42:00Z",
+        "updated_at": "2026-03-01T11:42:00Z"
+      }
+    ]
+  },
+  {
+    "number": 82,
+    "id": 8201,
+    "title": "Handshake flood mitigation less effective than expected under load",
+    "state": "open",
+    "user": {"login": "security-akim", "id": 80003, "type": "User"},
+    "labels": [{"id": 4001, "name": "bug", "color": "d73a4a"}, {"id": 4004, "name": "P1", "color": "e11d48"}],
+    "body": "During our latest load test simulating a handshake flood, we measured that the gateway processes approximately 120% of the expected maximum handshake-initiation rate. The WireGuard rate limiter should cap initiation packets to `packetsPerSecond` after the initial burst, but we are seeing a consistent overshoot specifically on the *first* burst from each source IP.\n\nThis is related to #78. The effect is multiplicative: with 10k unique source IPs per second (typical for amplification attacks), that is 10k extra Curve25519 DH operations that should have been dropped.\n\nPrioritizing this as P1 since it directly impacts our DDoS resilience posture.",
+    "created_at": "2026-03-02T16:00:00Z",
+    "updated_at": "2026-03-03T10:00:00Z",
+    "html_url": "https://github.com/acme-corp/wireguard-go/issues/82",
+    "comments": 0,
+    "comments_data": []
+  }
+]

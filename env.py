@@ -301,6 +301,7 @@ async def bug_fix_linear(
     sentry_data_dir: str | None = None,
     sentry_project: dict | None = None,
     pre_test_commands: list[str] | None = None,
+    test_command: str | None = None,
     linear_issue_state_type: str = "completed",
 ):
     """Bug-fix scenario with GitHub + Linear grading.
@@ -369,10 +370,15 @@ async def bug_fix_linear(
     for tf in test_files:
         bash(f"git -C {source} diff {baseline}..{test_branch} -- {tf} | git -C {grading_dir} apply")
 
+    if test_command is None:
+        test_cmd = f"cd {grading_dir} && python -m pytest {' '.join(test_files)} -v"
+    else:
+        test_cmd = test_command.format(grading_dir=grading_dir)
+
     yield Grade.from_subscores([
         BashGrader.grade(
             weight=0.6,
-            command=f"cd {grading_dir} && python -m pytest {' '.join(test_files)} -v",
+            command=test_cmd,
             timeout=120,
         ),
         GitHubLogRubricGrader.grade(

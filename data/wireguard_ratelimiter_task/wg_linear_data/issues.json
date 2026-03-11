@@ -1,0 +1,50 @@
+[
+  {
+    "id": "issue-net-001",
+    "identifier": "NET-47",
+    "title": "Rate limiter initial burst allows one extra packet per source IP",
+    "description": "Production packet captures show the WireGuard rate limiter allows 6 handshake-initiation packets from a new source IP before throttling, instead of the expected 5 (packetsBurstable).\n\nSee GitHub issues #78 and #82 on acme-corp/wireguard-go.\n\n**Impact:** Under a distributed handshake flood with thousands of unique source IPs, this off-by-one compounds to ~20% more CPU-bound Curve25519 operations than the rate limiter is designed to permit. This degrades DDoS resilience.\n\n**Suspected area:** The token bucket initialization in `ratelimiter/ratelimiter.go` within the `Allow()` function. When a new IP is seen for the first time, the entry is created with a token count that doesn't account for the implicit allowance of the first packet.\n\n**Hint:** Look at how `entry.tokens` is initialized when `entry == nil` in `Allow()`. The first call returns `true` without deducting from the token bucket. If the initial token count is set to the full `maxTokens`, then `packetsBurstable` additional packets will be allowed on subsequent calls, giving `packetsBurstable + 1` total.",
+    "priority": 1,
+    "state": {
+      "id": "state-003",
+      "name": "In Progress",
+      "type": "started"
+    },
+    "team": {
+      "id": "team-net-001",
+      "name": "Networking",
+      "key": "NET"
+    },
+    "assignee": null,
+    "creator": {
+      "id": "user-001",
+      "name": "Agent Bot"
+    },
+    "project": {
+      "id": "project-net-001",
+      "name": "VPN Gateway Hardening"
+    },
+    "labels": {
+      "nodes": [
+        {"id": "label-net-001", "name": "Bug", "color": "#eb5757"},
+        {"id": "label-net-002", "name": "Security", "color": "#f2c94c"}
+      ]
+    },
+    "createdAt": "2026-03-01T10:00:00.000Z",
+    "updatedAt": "2026-03-02T16:30:00.000Z",
+    "url": "https://linear.app/acme-corp/issue/NET-47",
+    "comments": {
+      "nodes": [
+        {
+          "id": "comment-net-001",
+          "body": "I traced through the Allow() function. When a new IP shows up:\n1. entry is nil, so we create a new RatelimiterEntry\n2. We set entry.tokens and return true immediately (first packet allowed)\n3. On subsequent calls, the remaining tokens determine how many more packets pass\n\nThe question is whether the initial token count properly accounts for that first implicit allowance. If tokens start at maxTokens, then the total burst is 1 (initial) + packetsBurstable (from token budget) = packetsBurstable + 1.",
+          "createdAt": "2026-03-01T14:20:00.000Z",
+          "user": {
+            "id": "user-001",
+            "name": "Agent Bot"
+          }
+        }
+      ]
+    }
+  }
+]

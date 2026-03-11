@@ -1,0 +1,12 @@
+diff --git a/ratelimiter/ratelimiter.go b/ratelimiter/ratelimiter.go
+--- a/ratelimiter/ratelimiter.go
++++ b/ratelimiter/ratelimiter.go
+@@ -106,7 +106,7 @@ func (rate *Ratelimiter) Allow(ip netip.Addr) bool {
+ 	// make new entry if not found
+ 	if entry == nil {
+ 		entry = new(RatelimiterEntry)
+-		entry.tokens = maxTokens
++		entry.tokens = maxTokens - packetCost
+ 		entry.lastTime = rate.timeNow()
+ 		rate.mu.Lock()
+ 		rate.table[ip] = entry

@@ -28,6 +28,13 @@ RUN apt-get update -y \
 
 RUN update-ca-certificates
 
+# Install Go 1.23 for wireguard-go builds and tests
+RUN curl -fsSL https://go.dev/dl/go1.23.6.linux-amd64.tar.gz \
+      | tar -C /usr/local -xz
+ENV PATH="/usr/local/go/bin:${PATH}"
+ENV GOPATH="/home/ubuntu/go"
+ENV GOMODCACHE="/home/ubuntu/go/pkg/mod"
+
 WORKDIR /
 
 # Install nvm for ubuntu user
@@ -80,6 +87,9 @@ RUN --mount=type=secret,id=LIB_GITHUB_PAT \
 
 # Bring in pre-cloned repos from the repos stage
 COPY --from=repos /home/root/source /home/root/source
+
+# Pre-download wireguard-go dependencies so container doesn't need network at runtime
+RUN cd /home/root/source/wireguard-go && go mod download
 
 ENV PYTHONPATH=/mcp_server/.venv/lib/python3.12/site-packages:/mcp_server
 ENV PATH=/mcp_server/.venv/bin:/home/ubuntu/.local/bin:$PATH

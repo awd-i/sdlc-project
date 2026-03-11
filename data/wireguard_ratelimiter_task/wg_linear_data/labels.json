@@ -1,0 +1,4 @@
+[
+  {"id": "label-net-001", "name": "Bug", "color": "#eb5757", "teamId": "team-net-001"},
+  {"id": "label-net-002", "name": "Security", "color": "#f2c94c", "teamId": "team-net-001"}
+]

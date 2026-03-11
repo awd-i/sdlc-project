@@ -78,3 +78,6 @@ pyrightconfig.json
 hud.lock.yaml
 .hud
 .hud_eval.toml
+
+# Local wireguard-go clone for branch setup
+wireguard-go/

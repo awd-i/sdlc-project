@@ -1,0 +1,11 @@
+[
+  {
+    "id": "project-net-001",
+    "name": "VPN Gateway Hardening",
+    "description": "Improve resilience and correctness of the WireGuard VPN gateway under adversarial traffic conditions. Covers rate limiting, handshake flood mitigation, and replay protection.",
+    "state": "started",
+    "teamIds": ["team-net-001"],
+    "createdAt": "2026-01-15T10:00:00.000Z",
+    "updatedAt": "2026-03-01T09:00:00.000Z"
+  }
+]
